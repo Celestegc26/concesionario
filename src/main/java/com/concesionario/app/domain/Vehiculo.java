@@ -25,8 +25,8 @@ public class Vehiculo implements Serializable {
     @Column(name = "tipo")
     private String tipo;
 
-    @Column(name = "mtricula")
-    private String mtricula;
+    @Column(name = "matricula")
+    private String matricula;
 
     @Column(name = "marca")
     private String marca;
@@ -82,17 +82,17 @@ public class Vehiculo implements Serializable {
         this.tipo = tipo;
     }
 
-    public String getMtricula() {
-        return this.mtricula;
+    public String getMatricula() {
+        return this.matricula;
     }
 
-    public Vehiculo mtricula(String mtricula) {
-        this.setMtricula(mtricula);
+    public Vehiculo matricula(String matricula) {
+        this.setMatricula(matricula);
         return this;
     }
 
-    public void setMtricula(String mtricula) {
-        this.mtricula = mtricula;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getMarca() {
@@ -230,7 +230,7 @@ public class Vehiculo implements Serializable {
         return "Vehiculo{" +
             "id=" + getId() +
             ", tipo='" + getTipo() + "'" +
-            ", mtricula='" + getMtricula() + "'" +
+            ", matricula='" + getMatricula() + "'" +
             ", marca='" + getMarca() + "'" +
             ", modelo='" + getModelo() + "'" +
             ", color='" + getColor() + "'" +

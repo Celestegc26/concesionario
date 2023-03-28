@@ -49,8 +49,8 @@ public class VehiculoServiceImpl implements VehiculoService {
                 if (vehiculo.getTipo() != null) {
                     existingVehiculo.setTipo(vehiculo.getTipo());
                 }
-                if (vehiculo.getMtricula() != null) {
-                    existingVehiculo.setMtricula(vehiculo.getMtricula());
+                if (vehiculo.getMatricula() != null) {
+                    existingVehiculo.setMatricula(vehiculo.getMatricula());
                 }
                 if (vehiculo.getMarca() != null) {
                     existingVehiculo.setMarca(vehiculo.getMarca());

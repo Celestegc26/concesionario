@@ -19,7 +19,7 @@
       },
       "id": "ID",
       "tipo": "Tipo",
-      "mtricula": "Mtricula",
+      "matricula": "Matricula",
       "marca": "Marca",
       "modelo": "Modelo",
       "color": "Color",

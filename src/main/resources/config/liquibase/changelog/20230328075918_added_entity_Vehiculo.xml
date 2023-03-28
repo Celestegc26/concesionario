@@ -17,7 +17,7 @@
             <column name="tipo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="mtricula" type="varchar(255)">
+            <column name="matricula" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="marca" type="varchar(255)">
@@ -63,7 +63,7 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="tipo" type="string"/>
-            <column name="mtricula" type="string"/>
+            <column name="matricula" type="string"/>
             <column name="marca" type="string"/>
             <column name="modelo" type="string"/>
             <column name="color" type="string"/>

@@ -32,8 +32,8 @@ class VehiculoResourceIT {
     private static final String DEFAULT_TIPO = "AAAAAAAAAA";
     private static final String UPDATED_TIPO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_MTRICULA = "AAAAAAAAAA";
-    private static final String UPDATED_MTRICULA = "BBBBBBBBBB";
+    private static final String DEFAULT_MATRICULA = "AAAAAAAAAA";
+    private static final String UPDATED_MATRICULA = "BBBBBBBBBB";
 
     private static final String DEFAULT_MARCA = "AAAAAAAAAA";
     private static final String UPDATED_MARCA = "BBBBBBBBBB";
@@ -79,7 +79,7 @@ class VehiculoResourceIT {
     public static Vehiculo createEntity(EntityManager em) {
         Vehiculo vehiculo = new Vehiculo()
             .tipo(DEFAULT_TIPO)
-            .mtricula(DEFAULT_MTRICULA)
+            .matricula(DEFAULT_MATRICULA)
             .marca(DEFAULT_MARCA)
             .modelo(DEFAULT_MODELO)
             .color(DEFAULT_COLOR)
@@ -98,7 +98,7 @@ class VehiculoResourceIT {
     public static Vehiculo createUpdatedEntity(EntityManager em) {
         Vehiculo vehiculo = new Vehiculo()
             .tipo(UPDATED_TIPO)
-            .mtricula(UPDATED_MTRICULA)
+            .matricula(UPDATED_MATRICULA)
             .marca(UPDATED_MARCA)
             .modelo(UPDATED_MODELO)
             .color(UPDATED_COLOR)
@@ -127,7 +127,7 @@ class VehiculoResourceIT {
         assertThat(vehiculoList).hasSize(databaseSizeBeforeCreate + 1);
         Vehiculo testVehiculo = vehiculoList.get(vehiculoList.size() - 1);
         assertThat(testVehiculo.getTipo()).isEqualTo(DEFAULT_TIPO);
-        assertThat(testVehiculo.getMtricula()).isEqualTo(DEFAULT_MTRICULA);
+        assertThat(testVehiculo.getMatricula()).isEqualTo(DEFAULT_MATRICULA);
         assertThat(testVehiculo.getMarca()).isEqualTo(DEFAULT_MARCA);
         assertThat(testVehiculo.getModelo()).isEqualTo(DEFAULT_MODELO);
         assertThat(testVehiculo.getColor()).isEqualTo(DEFAULT_COLOR);
@@ -167,7 +167,7 @@ class VehiculoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(vehiculo.getId().intValue())))
             .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO)))
-            .andExpect(jsonPath("$.[*].mtricula").value(hasItem(DEFAULT_MTRICULA)))
+            .andExpect(jsonPath("$.[*].matricula").value(hasItem(DEFAULT_MATRICULA)))
             .andExpect(jsonPath("$.[*].marca").value(hasItem(DEFAULT_MARCA)))
             .andExpect(jsonPath("$.[*].modelo").value(hasItem(DEFAULT_MODELO)))
             .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
@@ -189,7 +189,7 @@ class VehiculoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(vehiculo.getId().intValue()))
             .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO))
-            .andExpect(jsonPath("$.mtricula").value(DEFAULT_MTRICULA))
+            .andExpect(jsonPath("$.matricula").value(DEFAULT_MATRICULA))
             .andExpect(jsonPath("$.marca").value(DEFAULT_MARCA))
             .andExpect(jsonPath("$.modelo").value(DEFAULT_MODELO))
             .andExpect(jsonPath("$.color").value(DEFAULT_COLOR))
@@ -219,7 +219,7 @@ class VehiculoResourceIT {
         em.detach(updatedVehiculo);
         updatedVehiculo
             .tipo(UPDATED_TIPO)
-            .mtricula(UPDATED_MTRICULA)
+            .matricula(UPDATED_MATRICULA)
             .marca(UPDATED_MARCA)
             .modelo(UPDATED_MODELO)
             .color(UPDATED_COLOR)
@@ -240,7 +240,7 @@ class VehiculoResourceIT {
         assertThat(vehiculoList).hasSize(databaseSizeBeforeUpdate);
         Vehiculo testVehiculo = vehiculoList.get(vehiculoList.size() - 1);
         assertThat(testVehiculo.getTipo()).isEqualTo(UPDATED_TIPO);
-        assertThat(testVehiculo.getMtricula()).isEqualTo(UPDATED_MTRICULA);
+        assertThat(testVehiculo.getMatricula()).isEqualTo(UPDATED_MATRICULA);
         assertThat(testVehiculo.getMarca()).isEqualTo(UPDATED_MARCA);
         assertThat(testVehiculo.getModelo()).isEqualTo(UPDATED_MODELO);
         assertThat(testVehiculo.getColor()).isEqualTo(UPDATED_COLOR);
@@ -332,7 +332,7 @@ class VehiculoResourceIT {
         assertThat(vehiculoList).hasSize(databaseSizeBeforeUpdate);
         Vehiculo testVehiculo = vehiculoList.get(vehiculoList.size() - 1);
         assertThat(testVehiculo.getTipo()).isEqualTo(UPDATED_TIPO);
-        assertThat(testVehiculo.getMtricula()).isEqualTo(DEFAULT_MTRICULA);
+        assertThat(testVehiculo.getMatricula()).isEqualTo(DEFAULT_MATRICULA);
         assertThat(testVehiculo.getMarca()).isEqualTo(DEFAULT_MARCA);
         assertThat(testVehiculo.getModelo()).isEqualTo(DEFAULT_MODELO);
         assertThat(testVehiculo.getColor()).isEqualTo(DEFAULT_COLOR);
@@ -355,7 +355,7 @@ class VehiculoResourceIT {
 
         partialUpdatedVehiculo
             .tipo(UPDATED_TIPO)
-            .mtricula(UPDATED_MTRICULA)
+            .matricula(UPDATED_MATRICULA)
             .marca(UPDATED_MARCA)
             .modelo(UPDATED_MODELO)
             .color(UPDATED_COLOR)
@@ -376,7 +376,7 @@ class VehiculoResourceIT {
         assertThat(vehiculoList).hasSize(databaseSizeBeforeUpdate);
         Vehiculo testVehiculo = vehiculoList.get(vehiculoList.size() - 1);
         assertThat(testVehiculo.getTipo()).isEqualTo(UPDATED_TIPO);
-        assertThat(testVehiculo.getMtricula()).isEqualTo(UPDATED_MTRICULA);
+        assertThat(testVehiculo.getMatricula()).isEqualTo(UPDATED_MATRICULA);
         assertThat(testVehiculo.getMarca()).isEqualTo(UPDATED_MARCA);
         assertThat(testVehiculo.getModelo()).isEqualTo(UPDATED_MODELO);
         assertThat(testVehiculo.getColor()).isEqualTo(UPDATED_COLOR);

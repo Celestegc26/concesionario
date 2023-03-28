@@ -21,7 +21,7 @@ describe('Vehiculo Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             tipo: expect.any(Object),
-            mtricula: expect.any(Object),
+            matricula: expect.any(Object),
             marca: expect.any(Object),
             modelo: expect.any(Object),
             color: expect.any(Object),
@@ -40,7 +40,7 @@ describe('Vehiculo Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             tipo: expect.any(Object),
-            mtricula: expect.any(Object),
+            matricula: expect.any(Object),
             marca: expect.any(Object),
             modelo: expect.any(Object),
             color: expect.any(Object),

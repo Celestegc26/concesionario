@@ -19,7 +19,7 @@ type VehiculoFormDefaults = Pick<NewVehiculo, 'id'>;
 type VehiculoFormGroupContent = {
   id: FormControl<IVehiculo['id'] | NewVehiculo['id']>;
   tipo: FormControl<IVehiculo['tipo']>;
-  mtricula: FormControl<IVehiculo['mtricula']>;
+  matricula: FormControl<IVehiculo['matricula']>;
   marca: FormControl<IVehiculo['marca']>;
   modelo: FormControl<IVehiculo['modelo']>;
   color: FormControl<IVehiculo['color']>;
@@ -47,7 +47,7 @@ export class VehiculoFormService {
         }
       ),
       tipo: new FormControl(vehiculoRawValue.tipo),
-      mtricula: new FormControl(vehiculoRawValue.mtricula),
+      matricula: new FormControl(vehiculoRawValue.matricula),
       marca: new FormControl(vehiculoRawValue.marca),
       modelo: new FormControl(vehiculoRawValue.modelo),
       color: new FormControl(vehiculoRawValue.color),

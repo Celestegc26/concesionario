@@ -1,7 +1,7 @@
 
 entity Vehiculo {
   	tipo String
-    mtricula String
+    matricula String
     marca String
     modelo String
     color String

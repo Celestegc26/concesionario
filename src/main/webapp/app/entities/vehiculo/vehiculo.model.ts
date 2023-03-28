@@ -3,7 +3,7 @@ import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 export interface IVehiculo {
   id: number;
   tipo?: string | null;
-  mtricula?: string | null;
+  matricula?: string | null;
   marca?: string | null;
   modelo?: string | null;
   color?: string | null;

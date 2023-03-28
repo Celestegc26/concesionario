@@ -6,7 +6,7 @@ export const sampleWithRequiredData: IVehiculo = {
 
 export const sampleWithPartialData: IVehiculo = {
   id: 25965,
-  mtricula: 'back wireless Grupo',
+  matricula: 'back wireless Grupo',
   color: 'Morado',
   motor: 'Verde program Hogar',
 };
@@ -14,7 +14,7 @@ export const sampleWithPartialData: IVehiculo = {
 export const sampleWithFullData: IVehiculo = {
   id: 23232,
   tipo: 'cliente Cuentas back-end',
-  mtricula: 'Humano',
+  matricula: 'Humano',
   marca: 'navigate deposit',
   modelo: 'Contabilidad Liechtenstein',
   color: 'Violeta',
