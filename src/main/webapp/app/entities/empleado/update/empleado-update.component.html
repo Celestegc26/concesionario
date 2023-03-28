@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-empleado-heading" data-cy="EmpleadoCreateUpdateHeading" jhiTranslate="concesionarioApp.empleado.home.createOrEditLabel">
+        Crear o editar Empleado
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.nif" for="field_nif">Nif</label>
+          <input type="text" class="form-control" name="nif" id="field_nif" data-cy="nif" formControlName="nif" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.apellidos" for="field_apellidos">Apellidos</label>
+          <input type="text" class="form-control" name="apellidos" id="field_apellidos" data-cy="apellidos" formControlName="apellidos" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.puesto" for="field_puesto">Puesto</label>
+          <input type="text" class="form-control" name="puesto" id="field_puesto" data-cy="puesto" formControlName="puesto" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.salario" for="field_salario">Salario</label>
+          <input type="number" class="form-control" name="salario" id="field_salario" data-cy="salario" formControlName="salario" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.empleado.contacto" for="field_contacto">Contacto</label>
+          <input type="text" class="form-control" name="contacto" id="field_contacto" data-cy="contacto" formControlName="contacto" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-venta-heading" data-cy="VentaCreateUpdateHeading" jhiTranslate="concesionarioApp.venta.home.createOrEditLabel">
+        Crear o editar Venta
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.venta.fecha" for="field_fecha">Fecha</label>
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.venta.vehiculo" for="field_vehiculo">Vehiculo</label>
+          <select
+            class="form-control"
+            id="field_vehiculo"
+            data-cy="vehiculo"
+            name="vehiculo"
+            formControlName="vehiculo"
+            [compareWith]="compareVehiculo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="vehiculoOption" *ngFor="let vehiculoOption of vehiculosCollection">{{ vehiculoOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.venta.empleado" for="field_empleado">Empleado</label>
+          <select
+            class="form-control"
+            id="field_empleado"
+            data-cy="empleado"
+            name="empleado"
+            formControlName="empleado"
+            [compareWith]="compareEmpleado"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="empleadoOption" *ngFor="let empleadoOption of empleadosSharedCollection">{{ empleadoOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="concesionarioApp.venta.cliente" for="field_cliente">Cliente</label>
+          <select
+            class="form-control"
+            id="field_cliente"
+            data-cy="cliente"
+            name="cliente"
+            formControlName="cliente"
+            [compareWith]="compareCliente"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="clienteOption" *ngFor="let clienteOption of clientesSharedCollection">{{ clienteOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

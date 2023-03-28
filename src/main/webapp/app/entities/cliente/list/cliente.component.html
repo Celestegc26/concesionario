@@ -1,0 +1,123 @@
+<div>
+  <h2 id="page-heading" data-cy="ClienteHeading">
+    <span jhiTranslate="concesionarioApp.cliente.home.title">Clientes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="concesionarioApp.cliente.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cliente"
+        [routerLink]="['/cliente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="concesionarioApp.cliente.home.createLabel"> Crear nuevo Cliente </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="clientes?.length === 0">
+    <span jhiTranslate="concesionarioApp.cliente.home.notFound">Ningún Clientes encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="clientes && clientes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nif">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.nif">Nif</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombre">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.nombre">Nombre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="apellidos">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.apellidos">Apellidos</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="direcion">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.direcion">Direcion</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contacto">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.contacto">Contacto</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numeroCuenta">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.cliente.numeroCuenta">Numero Cuenta</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a>
+          </td>
+          <td>{{ cliente.nif }}</td>
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.apellidos }}</td>
+          <td>{{ cliente.direcion }}</td>
+          <td>{{ cliente.contacto }}</td>
+          <td>{{ cliente.numeroCuenta }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cliente', cliente.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cliente', cliente.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(cliente)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

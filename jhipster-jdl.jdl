@@ -1,0 +1,54 @@
+
+entity Vehiculo {
+  	tipo String
+    mtricula String
+    marca String
+    modelo String
+    color String
+    ano String
+    precio Float
+    motor String
+}
+
+entity Empleado {
+  	nif String
+    nombre String
+    apellidos String
+    puesto String
+    salario Float
+    contacto String
+}
+
+entity Cliente {
+  	nif String
+    nombre String
+    apellidos String
+    direcion String
+    contacto String
+    numeroCuenta String
+}
+
+entity Proveedor {
+  	nombre String
+    direcion String
+    contacto String
+    cif String
+}
+entity Venta {
+	fecha LocalDate
+}
+
+relationship ManyToOne {
+	Venta to Empleado
+    Venta to Cliente
+	Vehiculo to Proveedor
+}
+
+relationship OneToOne {
+	Venta to Vehiculo
+}
+
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

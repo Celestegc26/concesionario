@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="VehiculoHeading">
+    <span jhiTranslate="concesionarioApp.vehiculo.home.title">Vehiculos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="concesionarioApp.vehiculo.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vehiculo"
+        [routerLink]="['/vehiculo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="concesionarioApp.vehiculo.home.createLabel"> Crear nuevo Vehiculo </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="vehiculos?.length === 0">
+    <span jhiTranslate="concesionarioApp.vehiculo.home.notFound">Ningún Vehiculos encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="vehiculos && vehiculos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tipo">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.tipo">Tipo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mtricula">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.mtricula">Mtricula</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="marca">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.marca">Marca</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="modelo">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.modelo">Modelo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="color">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.color">Color</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ano">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.ano">Ano</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="precio">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.precio">Precio</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="motor">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.motor">Motor</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="proveedor.id">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.vehiculo.proveedor">Proveedor</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehiculo of vehiculos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/vehiculo', vehiculo.id, 'view']">{{ vehiculo.id }}</a>
+          </td>
+          <td>{{ vehiculo.tipo }}</td>
+          <td>{{ vehiculo.mtricula }}</td>
+          <td>{{ vehiculo.marca }}</td>
+          <td>{{ vehiculo.modelo }}</td>
+          <td>{{ vehiculo.color }}</td>
+          <td>{{ vehiculo.ano }}</td>
+          <td>{{ vehiculo.precio }}</td>
+          <td>{{ vehiculo.motor }}</td>
+          <td>
+            <div *ngIf="vehiculo.proveedor">
+              <a [routerLink]="['/proveedor', vehiculo.proveedor.id, 'view']">{{ vehiculo.proveedor.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/vehiculo', vehiculo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/vehiculo', vehiculo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(vehiculo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

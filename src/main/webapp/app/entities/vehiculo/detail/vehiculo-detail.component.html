@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="vehiculo">
+      <h2 data-cy="vehiculoDetailsHeading"><span jhiTranslate="concesionarioApp.vehiculo.detail.title">Vehiculo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ vehiculo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.tipo">Tipo</span></dt>
+        <dd>
+          <span>{{ vehiculo.tipo }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.mtricula">Mtricula</span></dt>
+        <dd>
+          <span>{{ vehiculo.mtricula }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.marca">Marca</span></dt>
+        <dd>
+          <span>{{ vehiculo.marca }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.modelo">Modelo</span></dt>
+        <dd>
+          <span>{{ vehiculo.modelo }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.color">Color</span></dt>
+        <dd>
+          <span>{{ vehiculo.color }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.ano">Ano</span></dt>
+        <dd>
+          <span>{{ vehiculo.ano }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.precio">Precio</span></dt>
+        <dd>
+          <span>{{ vehiculo.precio }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.motor">Motor</span></dt>
+        <dd>
+          <span>{{ vehiculo.motor }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.vehiculo.proveedor">Proveedor</span></dt>
+        <dd>
+          <div *ngIf="vehiculo.proveedor">
+            <a [routerLink]="['/proveedor', vehiculo.proveedor.id, 'view']">{{ vehiculo.proveedor.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/vehiculo', vehiculo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

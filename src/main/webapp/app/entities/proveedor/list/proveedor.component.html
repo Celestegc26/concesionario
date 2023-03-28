@@ -1,0 +1,109 @@
+<div>
+  <h2 id="page-heading" data-cy="ProveedorHeading">
+    <span jhiTranslate="concesionarioApp.proveedor.home.title">Proveedors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="concesionarioApp.proveedor.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-proveedor"
+        [routerLink]="['/proveedor/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="concesionarioApp.proveedor.home.createLabel"> Crear nuevo Proveedor </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="proveedors?.length === 0">
+    <span jhiTranslate="concesionarioApp.proveedor.home.notFound">Ningún Proveedors encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="proveedors && proveedors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombre">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.proveedor.nombre">Nombre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="direcion">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.proveedor.direcion">Direcion</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contacto">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.proveedor.contacto">Contacto</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cif">
+            <div class="d-flex">
+              <span jhiTranslate="concesionarioApp.proveedor.cif">Cif</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proveedor of proveedors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/proveedor', proveedor.id, 'view']">{{ proveedor.id }}</a>
+          </td>
+          <td>{{ proveedor.nombre }}</td>
+          <td>{{ proveedor.direcion }}</td>
+          <td>{{ proveedor.contacto }}</td>
+          <td>{{ proveedor.cif }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/proveedor', proveedor.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/proveedor', proveedor.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(proveedor)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
