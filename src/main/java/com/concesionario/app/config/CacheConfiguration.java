@@ -56,6 +56,7 @@ public class CacheConfiguration {
             createCache(cm, com.concesionario.app.domain.Proveedor.class.getName());
             createCache(cm, com.concesionario.app.domain.Proveedor.class.getName() + ".vehiculos");
             createCache(cm, com.concesionario.app.domain.Venta.class.getName());
+            createCache(cm, com.concesionario.app.domain.Modelo.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

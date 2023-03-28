@@ -29,6 +29,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'concesionarioApp.venta.home.title' },
         loadChildren: () => import('./venta/venta.module').then(m => m.VentaModule),
       },
+      {
+        path: 'modelo',
+        data: { pageTitle: 'concesionarioApp.modelo.home.title' },
+        loadChildren: () => import('./modelo/modelo.module').then(m => m.ModeloModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
